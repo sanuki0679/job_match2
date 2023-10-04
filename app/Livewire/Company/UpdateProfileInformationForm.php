@@ -4,7 +4,7 @@ namespace App\Livewire\Company;
 
 use App\Actions\Fortify\UpdateUserProfileInformation as FortifyUpdateUserProfileInformation;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Fortify\Contracts\UpdateUserProfileInformation;
+use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -39,10 +39,10 @@ class UpdateProfileInformationForm extends Component
     /**
      * Update the user's profile information.
      *
-     * @param \Laravel\Fortify\Contracts\UpdateUserProfileInformation  $updater
+     * @param \Laravel\Fortify\Contracts\UpdatesUserProfileInformation  $updater
      * @return void
      */
-    public function updateProfileInformation(UpdateUserProfileInformation $updater)
+    public function updateProfileInformation(UpdatesUserProfileInformation $updater)
     {
         $this->resetErrorBag();
         
@@ -54,7 +54,7 @@ class UpdateProfileInformationForm extends Component
         );
 
         if (isset($this->photo)) {
-            return redirect()->rooute('profile.show');
+            return redirect()->route('profile.show');
         }
 
         $this->emit('saved');

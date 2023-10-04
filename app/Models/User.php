@@ -62,6 +62,6 @@ class User extends Authenticatable
 
     public function company()
     {
-        return $This->hasOne(\Aapp\Models\Company::class);
+        return $this->hasOne(\App\Models\Company::class);
     }
 }
