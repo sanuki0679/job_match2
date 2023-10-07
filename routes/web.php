@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobOfferController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +32,11 @@ Route::get('company/register', function () {
     return view('company.register');
 })->middleware('guest')
     ->name('company.register');
+
+Route::resource('job_offers', JobOfferController::class)
+    ->only(['create', 'store', 'edit', 'update', 'destroy'])
+    ->middleware('can:company');
+
+Route::resource('job_offer', JobOfferController::class)
+    ->only(['show', 'index'])
+    ->middleware('auth');

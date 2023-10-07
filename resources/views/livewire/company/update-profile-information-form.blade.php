@@ -13,7 +13,7 @@
             <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
                 <!-- Company Profile Photo File Input -->
                 <input type="file" class="hidden"
-                            wire:model.live="photo"
+                            wire:model="photo"
                             x-ref="photo"
                             x-on:change="
                                     photoName = $refs.photo.files[0].name;
@@ -28,7 +28,7 @@
 
                 <!-- Current Company Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
-                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
+                    <img src="{{ $this->user->company->profile_photo_url }}" alt="{{ $this->user->company->name }}" class="rounded-full h-20 w-20 object-cover">
                 </div>
 
                 <!-- New Company Profile Photo Preview -->
@@ -42,7 +42,7 @@
                     {{ __('Select A New Photo') }}
                 </x-secondary-button>
 
-                @if ($this->user->profile_photo_path)
+                @if ($this->user->company->profile_photo_path)
                     <x-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
                         {{ __('Remove Photo') }}
                     </x-secondary-button>
@@ -55,7 +55,7 @@
         <!-- Company Name -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="company_name" value="{{ __('会社名') }}" />
-            <x-input name="company_name" id="company_name" type="text" class="mt-1 block w-full" wire:model="state.company.name" required autocomplete="company_name" />
+            <x-input name="company_name" id="company_name" type="text" class="mt-1 block w-full" wire:model.defer="state.company.name" autocomplete="company_name" />
             <x-input-error for="company_name" class="mt-2" />
         </div>
 
