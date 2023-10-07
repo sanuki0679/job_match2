@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\JobOffer;
 use App\Models\Occupation;
-use Illuminate\Http\Request;
+use App\Http\Requests\JobOfferStoreRequest;
+use App\Http\Requests\JobOfferUpdateRequest;
 
 class JobOfferController extends Controller
 {
@@ -28,9 +29,22 @@ class JobOfferController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(JobOfferStoreRequest $request)
     {
-        //
+        $job_offer = new JobOffer($request->all());
+        $job_offer->company_id = $request->user()->company->id;
+
+        try {
+            // 登録
+            $job_offer->save();
+        } catch (\Exception $e) {
+            return back()->withInput()
+                ->withErrors('求人情報登録処理でエラーが発生しました');
+        }
+
+        return redirect()
+            ->route('job_offers.show', $job_offer)
+            ->with('notice', '求人情報を登録しました');
     }
 
     /**
@@ -52,7 +66,7 @@ class JobOfferController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, JobOffer $job_offer)
+    public function update(JobOfferUpdateRequest $request, JobOffer $job_offer)
     {
         //
     }

@@ -213,5 +213,16 @@ return [
         'updated_at'               => '更新日',
         'username'                 => 'ユーザー名',
         'year'                     => '年',
+
+        // 記載されていないカラム名を追記する
+        'occupation_id'            => '職種',
+        'due_date'                 => '募集期間',
+        'is_published'             => '公開状況',
     ],
+    // due_dateのカラムのバリデーションの日付文字列todayを「今日」にする
+    'values' => [
+        'due_date' => [
+            'today' => '今日',
+        ]
+    ]
 ];
