@@ -37,6 +37,6 @@ Route::resource('job_offers', JobOfferController::class)
     ->only(['create', 'store', 'edit', 'update', 'destroy'])
     ->middleware('can:company');
 
-Route::resource('job_offer', JobOfferController::class)
+Route::resource('job_offers', JobOfferController::class)
     ->only(['show', 'index'])
     ->middleware('auth');

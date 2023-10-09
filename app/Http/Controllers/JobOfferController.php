@@ -6,6 +6,7 @@ use App\Models\JobOffer;
 use App\Models\Occupation;
 use App\Http\Requests\JobOfferStoreRequest;
 use App\Http\Requests\JobOfferUpdateRequest;
+use PhpParser\Node\Stmt\Return_;
 
 class JobOfferController extends Controller
 {
@@ -52,7 +53,7 @@ class JobOfferController extends Controller
      */
     public function show(JobOffer $job_offer)
     {
-        //
+        return view('job_offers.show', compact('job_offer'));
     }
 
     /**
