@@ -64,4 +64,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(\App\Models\Company::class);
     }
+
+    public function entries()
+    {
+        return $this->hasMany(Entry::class);
+    }
 }

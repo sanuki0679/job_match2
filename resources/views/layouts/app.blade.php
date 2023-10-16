@@ -16,6 +16,10 @@
 
         <!-- Styles -->
         @livewireStyles
+
+        @if (isset($script))
+            {{ $script }}
+        @endif
     </head>
     <body class="font-sans antialiased">
         <x-banner />

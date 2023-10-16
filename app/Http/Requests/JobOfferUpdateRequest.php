@@ -24,10 +24,11 @@ class JobOfferUpdateRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:50',
-            'occupation_id' => 'required|exists:occupation,id',
+            'occupation_id' => 'required|exists:occupations,id',
             'due_date' => 'required|after_or_equal:today',
             'description' => 'required|string|max:2000',
             'is_published' => 'nullable|boolean',
+            'due_date' => 'required|date',
         ];
     }
 

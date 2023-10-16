@@ -52,6 +52,12 @@
                                 {{ __('Manage Account') }}
                             </div>
 
+                            @can('create', App\Models\JobOffer::class)
+                                <x-dropdown-link href="{{ route('job_offers.create') }}">
+                                    {{ '求人情報登録' }}
+                                </x-dropdown-link>
+                            @endcan
+
                             <x-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
@@ -62,8 +68,7 @@
                             <form method="POST" action="{{ route('logout') }}" x-data>
                                 @csrf
 
-                                <x-dropdown-link href="{{ route('logout') }}"
-                                        @click.prevent="$root.submit();">
+                                <x-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </form>
@@ -117,6 +122,12 @@
                 <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
+
+                @can('create', App\Models\JobOffer::class)
+                    <x-dropdown-link href="{{ route('job_offers.create') }}">
+                        {{ '求人情報登録' }}
+                    </x-dropdown-link>
+                @endcan
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}" x-data>
